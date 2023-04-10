@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_cdiscount_view_form" model="ir.ui.view">
+        <field name="name">partner_cdiscount.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"></field>
+        <field name="arch" type="xml">
+            <field name="lang" position="after">
+                <field name="retail_customer_id" invisible="1"></field>
+            </field>
+        </field>
+    </record>
+
+</odoo>

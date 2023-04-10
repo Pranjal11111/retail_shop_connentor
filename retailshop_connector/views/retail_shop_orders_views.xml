@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="retail_shop_orders_tree_view" model="ir.ui.view">
+        <field name="name">retail.shop.orders.tree.view</field>
+        <field name="model">retail.shop.orders</field>
+        <field name="arch" type="xml">
+            <tree edit="false">
+                <field name="retail_order_id"></field>
+                <field name="sku"></field>
+                <!-- <field name="order_status"></field> -->
+                <!-- <field name="shipping_method"></field> -->
+                    
+                            <field name="order_id"/>
+                        <!-- <button class="oe_stat_button" attrs="{'invisible': [('order_id','=',False)]}" string="Open Sale Order" name="open_sale_order" type="object" style="width: 1%">
+                        </button> -->
+                        <!-- <label for="order_id"/>
+                        <div class="o_row">
+                            <field name="order_id"/>
+                            <button name="open_sale_order" type="object" string="Open Sale Order"/>
+                        </div> -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="retail_shop_search_view_search" model="ir.ui.view">
+        <field name="name">retail_shop_search.view.search</field>
+        <field name="model">retail.shop.orders</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <filter name="shop" string="shop" icon="terp-partner" context="{'group_by': 'shop_id'}"/> 
+                <filter name="today" string="Today" icon="terp-partner" context="{'group_by': 'create_date:day'}"/> 
+
+                <!-- <filter string="Shipped" name="filter_shipped" domain="[('order_status', '=', 'Shipped')]"/> -->
+                <!-- <filter name="group_status" string="Status" icon="terp-partner" context="{'group_by':'order_status'}"/>  -->
+                <!-- <filter name="group_order_id" string="Cdiscount Order Id" icon="terp-partner" context="{'group_by':'cdiscount_order_id'}"/>  -->
+                <!-- <filter name="group_so" string="Sale Order" icon="terp-partner" context="{'group_by':'order_id'}"/>  -->
+            </search>
+        </field>
+    </record>
+
+    <record id="retail_shop_orders_view_form" model="ir.ui.view">
+        <field name="name">retail_shop.orders.form.view</field>
+        <field name="model">retail.shop.orders</field>
+        <field name="arch" type="xml">
+            <form string="" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="retail_order_id"></field>
+                            <field name="order_id"></field>
+                            <field name="sku"></field>
+                            <field name="first_name"></field>
+                            <field name="last_name"></field>
+                            <field name="ship_name"></field>
+                            <field name="address_one"></field>
+                            <field name="address_two"></field>
+                            <field name="address_three"></field>
+                            <field name="postcode"></field>
+                            <field name="delivery_country"></field>
+                            <field name="town"></field>
+                            <field name="insured_value"></field>
+                            <field name="delivery_inst"></field>
+                            <field name="picking_inst"></field>
+                            <field name="despatch_inst"></field>
+                            <field name="xero_account"></field>
+                            <field name="warehouse_id"></field>
+                            <field name="order_status"></field>
+                            <field name="shop_id"></field>
+                        </group>
+                        <group>
+                            <field name="quantity"></field>
+                            <field name="line_net_price"></field>
+                            <field name="phone"></field>
+                            <field name="warehouse"></field>
+                            <field name="date_placed"></field>
+                            <field name="shipping_net_price"></field>
+                            <field name="shipping_code"></field>
+                            <field name="duty_paid"></field>
+                            <field name="email"></field>
+                            <field name="inv_before_dispatch"></field>
+                            <field name="hold"></field>
+                            <field name="booking_req"></field>
+                            <field name="company"></field>
+                            <field name="title"></field>
+                            <field name="vat"></field>
+                            <field name="gift_meesage"></field>
+                        </group>
+                           
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_create_sale_oreders">
+       <field name="name">Map Sale Orders</field>
+       <field name="model_id" ref="model_retail_shop_orders"/>
+        <field name="binding_view_types">form,list</field>
+       <field name="binding_model_id" ref="model_retail_shop_orders"/>
+       <field name="state">code</field>
+       <field name="code">
+           action = records.map_sale_orders()
+       </field>
+   </record>
+
+</odoo>

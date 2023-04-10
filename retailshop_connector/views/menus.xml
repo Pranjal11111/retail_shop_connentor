@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <!-- <menuitem
+    id="cdiscount_root_menu"
+    name="CDiscount"
+    parent="odoo_mirakl_integration.menu_marketplace_configuration"
+    sequence="10"/> -->
+
+     
+
+
+</odoo>

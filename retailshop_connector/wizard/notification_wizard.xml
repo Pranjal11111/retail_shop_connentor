@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="amazon_wizard_form" model="ir.ui.view">
+            <field name="name">Amazon Message</field>
+            <field name="model">amazon.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Notification">
+                <group name="name">
+                    <field name="new_added_so" readonly="1"></field>
+                    <!-- <field name="new_added_line" readonly="1"></field> -->
+                    <field name="existing_updated_line" readonly="1"></field>
+                </group>
+                    
+                    <separator colspan="6"/>
+                    <footer>
+                        <button special="cancel" string="Close" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="amazon_wizard_action" model="ir.actions.act_window">
+            <field name="name">Amazon Wizard Message</field>
+            <field name="res_model">amazon.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

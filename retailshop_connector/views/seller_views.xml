@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="retail_shop_seller_view_form" model="ir.ui.view">
+    <field name="name">retail.shop.seller.form.view</field>
+    <field name="model">retail.shop.seller</field>
+    <field name="arch" type="xml">
+        <form string="Seller Information">
+            
+            <sheet>
+
+            <div class="oe_button_box" name="button_box">
+                <button name="action_view_retailshop_sale_order" string="Import Orders" type="object" class="oe_stat_button" icon="fa-usd" >
+                </button>
+                <button name="action_view_sale_orders" type="object" string="Sale Orders"  class="oe_stat_button" icon="fa-cubes" >
+                </button>
+            </div>
+                <group>
+                    <field name="name"></field>
+                </group>
+                <notebook>
+                    <page name="config" string="Configuration">
+                        <button name="generate_token" string="Generate Token" type="object" attrs="{'invisible': ['|',('api_login','=',False),('seller_token','!=',False)]}"/>
+                        <button name="generate_token" string="Refresh Token" type="object" attrs="{'invisible': ['|',('api_login','=',False),('seller_token','=',False)]}"/>
+                        
+                            <group>
+                                <field name="warehouse_id"></field>
+                                <field name="api_login"/>
+                                <!-- <field name="api_password" password="True"/> -->
+                                <field name="id"/>
+                            <field name="seller_token" force_save="true" ></field>
+                            <field name="test_token" invisible="1"></field>
+
+                            </group>
+
+                    </page>
+                    <page name="inventory" string="Inventory">
+                        <group>
+                            <field name="least_qty"/>
+                        </group>
+                    </page>
+                </notebook>
+                
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="retail_shop_seller_view_kanban" model="ir.ui.view">
+    <field name="name">retail.shop_seller.view.kanban</field>
+    <field name="model">retail.shop.seller</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <field name="name"></field>
+            <field name="seller_id"></field>
+            <!-- <field name="seller_token"></field> -->
+            <field name="warehouse_id"/>
+             <templates>
+                        <t t-name="kanban-box">
+                            <!-- <center> -->
+                                <div t-attf-class="oe_kanban_global_click shadow rounded border-light">
+                                    <div class="oe_kanban_details">
+                                        <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                        </strong>
+                                    <div t-if="record.seller_id.value">
+                                            <t t-esc="record.seller_id.value"/>
+                                    </div>
+                                    <div t-if="record.warehouse_id.value">
+                                        <t t-esc="record.warehouse_id.value"/>
+                                    </div>
+                                    </div>
+                                </div>
+                            <!-- </center> -->
+                        </t>
+                    </templates>
+        </kanban>
+    </field>
+</record>
+
+<record id="action_retail_shop_seller_form" model="ir.actions.act_window" >
+    <field name="name">Seller</field>
+    <field name="res_model">retail.shop.seller</field>
+    <field name="view_mode">kanban,form,tree</field>
+</record>
+
+<menuitem
+    id="amazon_root_shop"
+    name="Retail Store"
+    parent="odoo_mirakl_integration.menu_multiple_shops"
+    action="action_retail_shop_seller_form"
+    sequence="100"/>   
+
+</odoo>

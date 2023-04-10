@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_seller_retail_shop,retail_shop_connector.retail.shop.seller,model_retail_shop_seller,base.group_user,1,1,1,1
+access_seller_retail_shop_orders,retail_shop_connector.retail_shop.orders,model_retail_shop_orders,base.group_user,1,1,1,1
+
+
