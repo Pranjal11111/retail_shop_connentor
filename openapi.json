@@ -1,0 +1,257 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RetailAPI",
+    "description": "REtail shop api testing",
+    "version": "0.1.9"
+  },
+  "servers": [
+    {
+      "url": "https://surya.odoo.com/"
+    }
+  ],
+  "paths": {
+    "/create_order": {
+      "post": {
+        "description": "To post orders details.",
+        "requestBody": {
+          "description": "structure of create order",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/create_order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order Create Successfully"
+          }
+        }
+      }
+    },
+    "/get_tracking_details": {
+      "get": {
+        "description": "Fetch details of rrder tracking.",
+        "requestBody": {
+          "description": "structure of create order",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/component2/schemas/get_tracking_details"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/component/schemas/get_tracking_details"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_inventory_data": {
+      "get": {
+        "description": "fetch inventory data",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/component1/schemas/get_inventory_data"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "component1": {
+    "schemas": {
+      "get_inventory_data": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "available_quantity": {
+            "type": "integer"
+          },
+          "more_data": {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string"
+              },
+              "available_quantity": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "component": {
+    "schemas": {
+      "get_tracking_details": {
+        "type": "object",
+        "properties": {
+          "tracking_details": {
+            "type": "object",
+            "properties": {
+              "carrier": {
+                "type": "string"
+              },
+              "tracking_code": {
+                "type": "string"
+              },
+              "orders": {
+                "type": "string"
+              },
+              "tracking_url": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "component2": {
+    "schemas": {
+      "get_tracking_details": {
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "format": "int64",
+            "example": [
+              "12234",
+              "34521"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "token_no"
+      },
+      "appId": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "email-id"
+      }
+    },
+    "security": [
+      {
+        "apiKey": [],
+        "appId": []
+      }
+    ],
+    "schemas": {
+      "create_order": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "warehouse": {
+            "type": "object",
+            "properties": {
+              "warehouse_id": {
+                "type": "string"
+              },
+              "warehouse_name": {
+                "type": "string"
+              }
+            }
+          },
+          "billing_adddress": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "address1": {
+                "type": "string"
+              },
+              "address2": {
+                "type": "string"
+              },
+              "address3": {
+                "type": "string"
+              },
+              "zip_code": {
+                "type": "integer"
+              },
+              "state": {
+                "type": "string"
+              },
+              "country_code": {
+                "type": "string"
+              }
+            }
+          },
+          "shipping_address": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "address1": {
+                "type": "string"
+              },
+              "address2": {
+                "type": "string"
+              },
+              "address3": {
+                "type": "string"
+              },
+              "zip_code": {
+                "type": "integer"
+              },
+              "state": {
+                "type": "string"
+              },
+              "country_code": {
+                "type": "string"
+              }
+            }
+          },
+          "lines": {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              },
+              "unit_price": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
